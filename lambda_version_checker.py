@@ -7,7 +7,7 @@ def lambda_handler(event,context):
     list = my_dict.split();
     output_list = []
     
-    print('Processing...')
+   
     client = boto3.client('lambda', region_name='us-east-1')
     for x in list:
     
@@ -19,8 +19,7 @@ def lambda_handler(event,context):
                 if response['Tags']['TEST.Code'] == "NOTUPTODATE":
                     for q in (response['Configuration']):
                         if response['Configuration']['Runtime'] == 'python2.7':
-                            print(response['Configuration']['FunctionName'] + " is in " + response['Configuration'][
-                                'Runtime'])
+
                             output = response['Configuration']['FunctionName']
                             output_list.append(output)
     
@@ -36,7 +35,7 @@ def lambda_handler(event,context):
     
     response = sns_client.publish(
         Message='The following lambdas are out of date: ' + str1,
-        TopicArn="#########################", #ARN value can be obtained when creating SNS topic
+        TopicArn="#########################", #ARN value can be obtained when creating SNS topic, its not included due to security
         Subject='Out of date lambda functions'
     
     )
