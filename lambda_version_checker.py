@@ -18,7 +18,7 @@ def lambda_handler(event,context):
             for i in (response['Tags']):
                 if response['Tags']['TEST.Code'] == "NOTUPTODATE":
                     for q in (response['Configuration']):
-                        if response['Configuration']['Runtime'] == 'python2.7':
+                        if response['Configuration']['Runtime'] != 'python3.8':
 
                             output = response['Configuration']['FunctionName']
                             output_list.append(output)
